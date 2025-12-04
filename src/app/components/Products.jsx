@@ -123,8 +123,8 @@ function ProductDetailSheet({ product, onClose }) {
           <HiMiniXMark className="h-5 w-5" />
         </button>
 
-        <div className="grid lg:grid-cols-[1.1fr_1fr] gap-0">
-          <div className="relative min-h-[320px] bg-[#1e293b]/50">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-0 max-h-[90vh] overflow-y-auto">
+        <div className="relative min-h-[320px] bg-[#1e293b]/50">
             {!imgError ? (
               <Image
                 src={safeImageSrc}

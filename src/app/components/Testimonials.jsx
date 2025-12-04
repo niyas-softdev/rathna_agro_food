@@ -119,7 +119,7 @@ export default function Testimonials() {
 
   <div className="flex justify-center">
     <img
-      src="/images/international flag.png" // ← YOUR SINGLE IMAGE HERE
+      src="/images/international-flag.png" // ← YOUR SINGLE IMAGE HERE
       alt="International Clients"
       className="w-full max-w-5xl h-auto object-contain drop-shadow-lg"
     />

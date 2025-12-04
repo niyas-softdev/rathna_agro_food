@@ -3,7 +3,7 @@ export const products = [
     id: 1,
     category: "Rice",
     title: "Nava Rice",
-    image: "/images/nava rice.jpg",
+    image: "/images/nava-rice.jpg",
     description:
       "Nine varieties of rice mixed together to provide nine different benefits in a single lot. Supports digestion, cardio health and overall wellness.",
     features: ["9 rice varieties blend", "Rich in fibre & vitamins", "Supports overall organ health"],
@@ -21,7 +21,7 @@ export const products = [
     id: 2,
     category: "Rice",
     title: "Mapillai Samba Rice",
-    image: "/images/mappilai samba rice.jpg",
+    image: "/images/mappilai-samba-rice.jpg",
     description:
       "Also known as bridegroom’s rice. High-fibre, low GI rice that supports digestion, blood sugar regulation and stamina.",
     features: ["Low glycemic index", "Muscle & nerve support", "Rich in minerals"],
@@ -42,7 +42,7 @@ export const products = [
     id: 3,
     category: "Rice",
     title: "Karuppu Kavuni Rice",
-    image: "/images/karuppu kavuni rice.jpg",
+    image: "/images/karuppu-kavuni-rice.jpg",
     description:
       "Also known as black rice. Rich in fibre, zinc and antioxidants to support heart health, immunity and skin & hair.",
     features: ["Antioxidant rich", "Heart supportive", "Good for skin & hair"],
@@ -63,7 +63,7 @@ export const products = [
     id: 4,
     category: "Rice",
     title: "Poongar Rice",
-    image: "/images/poongar rice.jpg",
+    image: "/images/poongar-rice.jpg",
     description:
       "Traditional rice highly beneficial for women, especially for hormonal balance and reproductive health. Low GI and nutrient rich.",
     features: ["Supports women’s health", "Low glycemic index", "Gluten-free"],
@@ -84,7 +84,7 @@ export const products = [
     id: 5,
     category: "Rice",
     title: "Thooyamalli Rice",
-    image: "/images/thooyamalli rice.jpg",
+    image: "/images/thooyamalli-rice.jpg",
     description:
       "Traditional rice variety known for strengthening internal organs and supporting a healthy nervous system. Rich in vitamins, minerals and antioxidants.",
     features: ["Supports nervous system", "Rich in vitamins & minerals", "Low GI & gluten-free"],
@@ -105,7 +105,7 @@ export const products = [
     id: 6,
     category: "Rice",
     title: "Seeraga Samba Rice",
-    image: "/images/seeraga samba rice.jpg",
+    image: "/images/seeraga-samba-rice.jpg",
     description:
       "Aromatic rice used widely for biryani. Rich in fibre, magnesium, potassium, zinc and antioxidants with low fat and gluten-free profile.",
     features: ["Aromatic biryani rice", "Gluten-free", "Source of minerals & antioxidants"],
@@ -126,7 +126,7 @@ export const products = [
     id: 7,
     category: "Rice",
     title: "Kichili Samba Rice",
-    image: "/images/kichili samba rice.jpg",
+    image: "/images/kichili-samba-rice.jpg",
     description:
       "Traditional low GI rice that is easily digestible, strengthens muscles and bones, and supports skin and immunity.",
     features: ["Low GI traditional rice", "Muscle & bone support", "Rich in vitamins"],
@@ -147,7 +147,7 @@ export const products = [
     id: 8,
     category: "Millets",
     title: "Little Millet",
-    image: "/images/little millet.jpg",
+    image: "/images/little-millet.jpg",
     description:
       "Also known as Samai or Kutki. Gluten-free millet rich in fibre, protein, iron, calcium and magnesium, resilient to drought and waterlogging.",
     features: ["Gluten-free", "High fibre & protein", "Rich in iron & minerals"],
@@ -169,7 +169,7 @@ export const products = [
     id: 9,
     category: "Millets",
     title: "Foxtail Millet",
-    image: "/images/foxtail millet.jpg",
+    image: "/images/foxtail-millet.jpg",
     description:
       "Nutrient-rich millet used as a rice substitute. High in fibre, iron and calcium with low GI, suitable for diabetics.",
     features: ["Low glycemic index", "Rich in iron & calcium", "Great rice substitute"],
