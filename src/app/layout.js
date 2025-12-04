@@ -17,11 +17,11 @@ export default function RootLayout({ children }) {
         suppressHydrationWarning
       >
         <AOSProvider>
-          <div className="flex flex-col min-h-screen">
-            <Navbar />
-            <main className="flex-1 pt-0 pb-12">{children}</main>
-            <Footer />
-          </div>
+        <div className="flex flex-col min-h-screen">
+          <Navbar />
+          <main className="flex-1 pt-0 pb-12">{children}</main>
+          <Footer />
+        </div>
         </AOSProvider>
       </body>
     </html>

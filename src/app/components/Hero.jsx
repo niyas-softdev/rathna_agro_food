@@ -145,24 +145,30 @@ export default function Hero() {
 
             {/* CAROUSEL IMAGE CONTAINER */}
             <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-[#fbbf24]/30 shadow-2xl shadow-[#fbbf24]/20 group">
-              {slides.map((slide, i) => (
-                <div
-                  key={slide.src}
-                  className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-                    i === index ? "opacity-100 z-10" : "opacity-0 z-0"
-                  }`}
-                >
-                  <Image
-                    src={slide.src && slide.src.trim() !== "" ? slide.src : "/placeholder.jpg"}
-                    alt={slide.title || "Product image"}
-                    fill
-                    className="object-cover"
-                    sizes="(min-width: 1024px) 460px, 100vw"
-                    priority={i === 0}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1e293b]/50 via-transparent to-transparent"></div>
-                </div>
-              ))}
+              {slides.map((slide, i) => {
+                const safeSrc = slide.src && slide.src.trim() !== "" 
+                  ? slide.src.replace(/\s+/g, "%20")
+                  : "/placeholder.jpg";
+                return (
+                  <div
+                    key={slide.src}
+                    className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                      i === index ? "opacity-100 z-10" : "opacity-0 z-0"
+                    }`}
+                  >
+                    <Image
+                      src={safeSrc}
+                      alt={slide.title || "Product image"}
+                      fill
+                      className="object-cover"
+                      sizes="(min-width: 1024px) 460px, 100vw"
+                      priority={i === 0}
+                      unoptimized
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1e293b]/50 via-transparent to-transparent"></div>
+                  </div>
+                );
+              })}
               
               {/* Navigation Arrows */}
               <button

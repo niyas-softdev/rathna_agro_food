@@ -16,9 +16,11 @@ function Pill({ children }) {
 }
 
 function ProductCard({ product, onSelect }) {
+  const [imgError, setImgError] = useState(false);
+  
   const safeSrc =
     product.image && typeof product.image === "string" && product.image.trim() !== ""
-      ? product.image
+      ? product.image.replace(/\s+/g, "%20") // URL encode spaces for production
       : "/placeholder.jpg";
 
   const highlights = product.features?.length
@@ -30,14 +32,22 @@ function ProductCard({ product, onSelect }) {
   return (
     <article className="glass-soft h-full flex flex-col overflow-hidden border border-white/5 transition-all duration-300 hover:-translate-y-1 hover:border-[#fbbf24]/50 hover:shadow-xl">
       <div className="relative">
-        <div className="relative aspect-[4/3] w-full overflow-hidden">
-          <Image
-            src={safeSrc}
-            alt={product.title}
-            fill
-            className="object-cover transition-transform duration-500 hover:scale-105"
-            sizes="(min-width: 1024px) 320px, 100vw"
-          />
+        <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#1e293b]/50">
+          {!imgError ? (
+            <Image
+              src={safeSrc}
+              alt={product.title}
+              fill
+              className="object-cover transition-transform duration-500 hover:scale-105"
+              sizes="(min-width: 1024px) 320px, 100vw"
+              onError={() => setImgError(true)}
+              unoptimized
+            />
+          ) : (
+            <div className="flex items-center justify-center h-full text-white/40 text-sm">
+              Image unavailable
+            </div>
+          )}
         </div>
         <span className="absolute left-3 top-3 rounded-full bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] px-3 py-1 text-[11px] font-semibold text-[#0f172a] shadow-lg shadow-[#fbbf24]/30">
           {product.category}
@@ -90,10 +100,16 @@ function DetailRow({ label, value }) {
 }
 
 function ProductDetailSheet({ product, onClose }) {
+  const [imgError, setImgError] = useState(false);
+  
   if (!product) return null;
 
   const nutritionEntries = Object.entries(product.nutrition || {});
   const specificationEntries = Object.entries(product.specification || {});
+  
+  const safeImageSrc = product.image 
+    ? product.image.replace(/\s+/g, "%20") 
+    : "/placeholder.jpg";
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#020617]/80 px-4 py-8">
@@ -108,14 +124,22 @@ function ProductDetailSheet({ product, onClose }) {
         </button>
 
         <div className="grid lg:grid-cols-[1.1fr_1fr] gap-0">
-          <div className="relative min-h-[320px]">
-            <Image
-              src={product.image || "/placeholder.jpg"}
-              alt={product.title}
-              fill
-              className="object-cover"
-              sizes="(min-width: 1024px) 480px, 100vw"
-            />
+          <div className="relative min-h-[320px] bg-[#1e293b]/50">
+            {!imgError ? (
+              <Image
+                src={safeImageSrc}
+                alt={product.title}
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 480px, 100vw"
+                onError={() => setImgError(true)}
+                unoptimized
+              />
+            ) : (
+              <div className="flex items-center justify-center h-full text-white/40 text-sm">
+                Image unavailable
+              </div>
+            )}
             <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/80 to-transparent"></div>
             <div className="absolute bottom-4 left-4 right-4 space-y-1">
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fbbf24]">
