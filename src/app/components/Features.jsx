@@ -33,10 +33,10 @@ export default function Features() {
     >
       <div className="max-w-6xl mx-auto space-y-10">
         <div className="text-center space-y-4" data-aos="zoom-in" data-aos-delay="120">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800">
             Our Special Features
           </h2>
-          <p className="max-w-3xl mx-auto text-sm sm:text-base text-white/80 leading-relaxed">
+          <p className="max-w-3xl mx-auto text-sm sm:text-base text-slate-600 leading-relaxed">
             The motto of this start-up is to serve better with best product quality.
           </p>
         </div>
@@ -45,17 +45,17 @@ export default function Features() {
           {featuresData.map(({ title, desc, Icon }, idx) => (
             <article
               key={title}
-              className="glass-soft p-6 sm:p-7 flex flex-col gap-4 border border-white/5 hover:border-[#fbbf24]/50 transition-colors duration-300"
+              className="glass-soft p-6 sm:p-7 flex flex-col gap-4 border border-slate-200/60 hover:border-orange-300/80 transition-colors duration-300 hover:shadow-xl hover:shadow-orange-100/50"
               data-aos="flip-left"
               data-aos-delay={idx * 100 + 150}
             >
-              <div className="relative flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-[#fb923c] via-[#f97316] to-[#fbbf24] text-[#0f172a] shadow-lg shadow-[#f97316]/30">
-                <div className="absolute inset-0 rounded-full border border-white/20" />
+              <div className="relative flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-orange-400 via-amber-500 to-orange-600 text-white shadow-lg shadow-orange-300/50">
+                <div className="absolute inset-0 rounded-full border border-white/30" />
                 <Icon className="relative text-2xl" />
               </div>
               <div className="space-y-2">
-                <h3 className="text-lg font-semibold text-[#86efac]">{title}</h3>
-                <p className="text-sm text-white leading-relaxed">{desc}</p>
+                <h3 className="text-lg font-semibold text-emerald-600">{title}</h3>
+                <p className="text-sm text-slate-600 leading-relaxed">{desc}</p>
               </div>
             </article>
           ))}

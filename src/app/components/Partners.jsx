@@ -11,12 +11,12 @@ const partners = [
 
 function LogoBadge({ name, index }) {
   const colors = [
-    "from-[#fbbf24] to-[#f59e0b]",
-    "from-[#86efac] to-[#22c55e]",
-    "from-[#60a5fa] to-[#3b82f6]",
-    "from-[#c084fc] to-[#a855f7]",
-    "from-[#f472b6] to-[#ec4899]",
-    "from-[#f97316] to-[#fb923c]",
+    "from-orange-500 to-amber-500",
+    "from-emerald-500 to-green-500",
+    "from-blue-500 to-cyan-500",
+    "from-purple-500 to-violet-500",
+    "from-pink-500 to-rose-500",
+    "from-orange-600 to-amber-600",
   ];
   const gradient = colors[index % colors.length];
   const initials = name
@@ -27,13 +27,13 @@ function LogoBadge({ name, index }) {
     .slice(0, 3);
 
   return (
-    <div className="glass-soft border border-white/5 px-4 py-3 flex items-center gap-3">
+    <div className="glass-soft border border-slate-200/60 px-4 py-3 flex items-center gap-3 hover:border-orange-300/80 hover:shadow-lg transition-all">
       <div
-        className={`h-10 w-10 rounded-full bg-gradient-to-br ${gradient} flex items-center justify-center text-sm font-bold text-[#0f172a] shadow-lg`}
+        className={`h-10 w-10 rounded-full bg-gradient-to-br ${gradient} flex items-center justify-center text-sm font-bold text-white shadow-lg`}
       >
         {initials}
       </div>
-      <span className="text-sm sm:text-base font-semibold text-white/90">{name}</span>
+      <span className="text-sm sm:text-base font-semibold text-slate-700">{name}</span>
     </div>
   );
 }
@@ -48,12 +48,12 @@ export default function Partners() {
       <div className="max-w-6xl mx-auto space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3" data-aos="fade-up" data-aos-delay="120">
           <div className="space-y-1">
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#fbbf24]">
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-orange-600">
               Trusted by leading marketplaces
             </p>
-            <h2 className="text-2xl sm:text-3xl font-semibold text-white">Partners & clients</h2>
+            <h2 className="text-2xl sm:text-3xl font-semibold text-slate-800">Partners & clients</h2>
           </div>
-          <p className="text-xs sm:text-sm text-white/75 max-w-md">
+          <p className="text-xs sm:text-sm text-slate-600 max-w-md">
             Brands and marketplaces that rely on Rathna Agro Foods for consistent quality and timely supply.
           </p>
         </div>

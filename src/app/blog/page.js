@@ -74,11 +74,11 @@ export default function BlogPage() {
     <div className="px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-16 lg:pb-20">
       <div className="max-w-5xl mx-auto space-y-10">
         <div className="space-y-3 text-center">
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#fbbf24]">
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-orange-600">
             Blog
           </p>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white">Insights & stories</h1>
-          <p className="text-sm sm:text-base text-white/80 max-w-3xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl font-bold text-slate-800">Insights & stories</h1>
+          <p className="text-sm sm:text-base text-slate-600 max-w-3xl mx-auto">
             Learn how heritage grains, millets and carefully sourced staples can power healthier kitchens and reliable supply chains.
           </p>
         </div>
@@ -87,15 +87,15 @@ export default function BlogPage() {
           {posts.map((post, idx) => (
             <article
               key={post.title}
-              className="glass-soft h-full p-5 sm:p-6 border border-white/5 hover:border-[#fbbf24]/50 transition-all duration-300 hover:-translate-y-1"
+              className="glass-soft h-full p-5 sm:p-6 border border-slate-200/60 hover:border-orange-300/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-100/50"
             >
-              <div className="flex items-center justify-between text-xs text-white/70 mb-3">
-                <span className="font-semibold text-[#fbbf24]">{post.tag}</span>
+              <div className="flex items-center justify-between text-xs text-slate-500 mb-3">
+                <span className="font-semibold text-orange-600">{post.tag}</span>
                 <span>{post.date}</span>
               </div>
-              <h2 className="text-lg font-semibold text-white mb-2">{post.title}</h2>
-              <p className="text-sm text-white/80 leading-relaxed mb-4">{post.summary}</p>
-              <div className="text-sm font-semibold text-[#fbbf24]">Read more →</div>
+              <h2 className="text-lg font-semibold text-slate-800 mb-2">{post.title}</h2>
+              <p className="text-sm text-slate-600 leading-relaxed mb-4">{post.summary}</p>
+              <div className="text-sm font-semibold text-orange-600 hover:text-orange-700 transition-colors">Read more →</div>
             </article>
           ))}
         </div>

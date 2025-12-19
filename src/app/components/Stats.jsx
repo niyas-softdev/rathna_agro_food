@@ -1,71 +1,158 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+
 const stats = [
-  { label: "Established", value: "2023", sub: "Rooted in trust" },
-  { label: "Clients Served", value: "100+", sub: "Growing partnerships" },
-  { label: "Awards", value: "15+", sub: "Quality & service wins" },
+  { label: "Established", value: 2023, suffix: "", sub: "Rooted in trust" },
+  { label: "Clients Served", value: 100, suffix: "+", sub: "Growing partnerships" },
+  { label: "Awards", value: 15, suffix: "+", sub: "Quality & service wins" },
 ];
 
 const regions = ["USA", "Europe", "Middle East (Gulf)", "Far East", "Australia"];
 
+/* 🔢 COUNT UP COMPONENT */
+function CountUp({ end, suffix = "" }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const started = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started.current) {
+          started.current = true;
+
+          const duration = 1400; // ms
+          const startTime = performance.now();
+
+          const animate = (time) => {
+            const progress = Math.min((time - startTime) / duration, 1);
+            const value = Math.floor(progress * end);
+            setCount(value);
+
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            }
+          };
+
+          requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [end]);
+
+  return (
+    <span ref={ref}>
+      {count}
+      {suffix}
+    </span>
+  );
+}
+
 export default function Stats() {
   return (
     <section
-      className="px-4 sm:px-6 lg:px-8"
-      data-aos="fade-up"
-      data-aos-delay="80"
-    >
-      <div className="max-w-6xl mx-auto space-y-8">
-        <div className="text-center space-y-3" data-aos="fade-up" data-aos-delay="120">
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#fbbf24]">
-            Snapshot
-          </p>
-          <h2 className="text-2xl sm:text-3xl font-semibold text-white">
-            Wholesome. Natural. Tradition in every grain.
-          </h2>
-          <p className="max-w-2xl mx-auto text-sm sm:text-base text-white/85">
-            Trusted quality since 2023—earning awards, serving clients worldwide, and exporting to leading markets.
-          </p>
-        </div>
+  className="
+    relative
+    min-h-[70vh] sm:min-h-[85vh]
+    flex items-center
+    overflow-hidden
+    pb-10 sm:pb-0
+  "
+  data-aos="fade-up"
+>
 
-        <div className="grid sm:grid-cols-3 gap-4 sm:gap-5" data-aos="fade-up" data-aos-delay="180">
-          {stats.map((item) => (
-            <div
-              key={item.label}
-              className="glass-soft p-5 sm:p-6 border border-white/5 text-center space-y-2"
-            >
-              <div className="text-3xl sm:text-4xl font-bold text-[#fbbf24]">{item.value}</div>
-              <div className="text-sm sm:text-base font-semibold text-white">{item.label}</div>
-              <div className="text-xs sm:text-sm text-white/70">{item.sub}</div>
-            </div>
-          ))}
-        </div>
+      {/* 🌾 BACKGROUND */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/images/contentbg.jpg')" }}
+      />
 
-        <div
-          className="glass-soft p-5 sm:p-6 border border-white/5 space-y-3"
-          data-aos="fade-up"
-          data-aos-delay="220"
-        >
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-xs font-semibold tracking-[0.15em] uppercase text-[#fbbf24]">
-              Countries we export to
-            </span>
+      {/* 🌫 OVERLAY */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
+
+      {/* CONTENT */}
+      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-16 pt-16 sm:pt-0">
+        <div className="max-w-3xl space-y-8 sm:space-y-10">
+
+          {/* Heading */}
+          <div className="space-y-3 sm:space-y-4">
+            <p className="text-[10px] sm:text-xs font-semibold tracking-[0.25em] uppercase text-orange-400">
+              Snapshot
+            </p>
+
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+              Wholesome. Natural. <br className="hidden sm:block" />
+              Tradition in every grain.
+            </h2>
+
+            <p className="text-xs sm:text-base text-slate-200 max-w-xl">
+              Trusted quality since 2023—earning awards, serving clients worldwide,
+              and exporting to leading global markets.
+            </p>
           </div>
-          <div className="flex flex-wrap gap-2 sm:gap-3">
-            {regions.map((country) => (
-              <span
-                key={country}
-                className="inline-flex items-center rounded-full bg-white/5 border border-[#fbbf24]/30 px-3 py-1 text-xs sm:text-sm text-white/85"
+
+          {/* 🔢 STATS */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+            {stats.map((item) => (
+              <div
+                key={item.label}
+                className="
+                  backdrop-blur-md bg-white/10
+                  border border-white/20
+                  rounded-xl p-4 sm:p-5
+                  text-center space-y-1.5
+                "
               >
-                <span className="h-2 w-2 rounded-full bg-[#fbbf24] mr-2" />
-                {country}
-              </span>
+                <div className="text-2xl sm:text-3xl font-bold text-orange-400">
+                  <CountUp end={item.value} suffix={item.suffix} />
+                </div>
+
+                <div className="text-sm font-semibold text-white">
+                  {item.label}
+                </div>
+
+                <div className="text-[11px] sm:text-xs text-slate-300">
+                  {item.sub}
+                </div>
+              </div>
             ))}
           </div>
+
+          {/* 🌍 REGIONS */}
+          <div className="space-y-2 sm:space-y-3">
+            <span className="text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-orange-400">
+              Countries we export to
+            </span>
+
+            <div className="flex flex-wrap gap-2">
+              {regions.map((country) => (
+                <span
+                  key={country}
+                  className="
+                    inline-flex items-center rounded-full
+                    bg-white/10 backdrop-blur
+                    border border-white/20
+                    px-3 sm:px-4 py-1
+                    text-[11px] sm:text-xs text-slate-100
+                  "
+                >
+                  <span className="h-2 w-2 rounded-full bg-orange-400 mr-2" />
+                  {country}
+                </span>
+              ))}
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
   );
 }
-
-

@@ -1,10 +1,10 @@
 export const products = [
-  // I. HERITAGE & HEALTH RICE (Traditional Varieties)
+  // I. TRADITIONAL RICE (Heritage & Health Varieties)
   {
     id: 1,
-    category: "Heritage Rice",
+    category: "Traditional Rice",
     title: "Karuppu Kavuni Rice (Black Rice)",
-    image: "/images/karuppu-kavuni-rice-500g.jpg",
+    image: "/images/karuppu-kavuni-rice.jpg",
     description:
       'Often called "Emperor\'s Rice," this black rice is a nutritional powerhouse loaded with anthocyanins.',
     features: ["Antioxidant powerhouse", "Low GI for diabetes", "Supports heart health"],
@@ -12,9 +12,9 @@ export const products = [
   },
   {
     id: 2,
-    category: "Heritage Rice",
+    category: "Traditional Rice",
     title: "Mapillai Samba Red Rice",
-    image: "/images/mapillai-samba-rice-500g.jpg",
+    image: "/images/mappilai-samba-rice.jpg",
     description:
       '"Bridegroom Rice" traditionally used to build strength and stamina.',
     features: ["Stamina booster", "Rich in Mg & B6", "Low GI"],
@@ -22,9 +22,9 @@ export const products = [
   },
   {
     id: 3,
-    category: "Heritage Rice",
+    category: "Traditional Rice",
     title: "Poongar Red Rice",
-    image: "/images/poongar-rice-500g.jpg",
+    image: "/images/poongar-rice.jpg",
     description:
       '"Women\'s Rice" resilient to drought/flood; supportive for hormonal balance.',
     features: ["Hormonal balance", "Maternal health", "Low GI"],
@@ -32,9 +32,9 @@ export const products = [
   },
   {
     id: 4,
-    category: "Heritage Rice",
+    category: "Traditional Rice",
     title: "Seeraga Samba Raw Rice",
-    image: "/images/seeraga-samba-rice-500g.jpg",
+    image: "/images/seeraga-samba-rice.jpg",
     description:
       'The aromatic "Prince of Rice," essential for authentic South Indian biryani.',
     features: ["Highly digestible", "Anti-bloating", "Selenium for immunity"],
@@ -42,9 +42,9 @@ export const products = [
   },
   {
     id: 5,
-    category: "Heritage Rice",
+    category: "Traditional Rice",
     title: "Kattuyanam Rice",
-    image: "/images/kattuyanam-rice-500g.jpg",
+    image: "/images/kattu-yanam-rice.jpg",
     description:
       'A "wild elephant" rice famed for metabolic health and very low GI.',
     features: ["Diabetes friendly", "Heart supportive", "Rich in folic acid"],
@@ -52,9 +52,9 @@ export const products = [
   },
   {
     id: 6,
-    category: "Heritage Rice",
+    category: "Traditional Rice",
     title: "Moongil Rice (Bamboo Rice)",
-    image: "/images/moongil-rice-500g.jpg",
+    image: "/images/Moongil Rice.png",
     description:
       "Rare bamboo seed grain, prized for relieving joint and back pain.",
     features: ["Joint support", "Mineral rich", "Rare harvest"],
@@ -62,9 +62,9 @@ export const products = [
   },
   {
     id: 7,
-    category: "Heritage Rice",
+    category: "Traditional Rice",
     title: "Illuppai Poo Samba Rice",
-    image: "/images/illuppai-poo-samba-500g.jpg",
+    image: "/images/illuppai-poo-samba-rice.jpg",
     description:
       "Mildly fragrant, medicinal rice named after the Bassia flower.",
     features: ["Supports joints", "Aids breathing", "Gentle aroma"],
@@ -72,9 +72,9 @@ export const products = [
   },
   {
     id: 8,
-    category: "Heritage Rice",
+    category: "Traditional Rice",
     title: "Thanga Samba Rice",
-    image: "/images/thanga-samba-rice-500g.jpg",
+    image: "/images/thanga-samba-rice.jpg",
     description:
       '"Gold Rice" celebrated for skin glow, stamina, and anti-aging benefits.',
     features: ["Anti-aging", "Stamina support", "Vitamin & mineral rich"],
@@ -82,9 +82,9 @@ export const products = [
   },
   {
     id: 9,
-    category: "Heritage Rice",
+    category: "Traditional Rice",
     title: "Nava Rice (Navara)",
-    image: "/images/navara-rice-500g.jpg",
+    image: "/images/navara-rice.jpg",
     description:
       "Ayurvedic red rice used for immunity, healing, and muscle mass.",
     features: ["Heals internal wounds", "Immunity boost", "Muscle support"],
@@ -96,7 +96,7 @@ export const products = [
     id: 10,
     category: "Daily Staples",
     title: "Sona Masuri Rice",
-    image: "/images/sona-masuri-rice.jpg",
+    image: "/images/Sona Masuri Rice.png",
     description:
       "Lightweight, aromatic grain ideal for daily meals and easy digestion.",
     features: ["Lower calories", "Daily table rice", "Soft texture"],
@@ -106,7 +106,7 @@ export const products = [
     id: 11,
     category: "Daily Staples",
     title: "Ponni Boiled Rice",
-    image: "/images/ponni-boiled-rice.jpg",
+    image: "/images/Ponni Boiled Rice.png",
     description:
       "Firm textured parboiled rice that retains more nutrients than raw rice.",
     features: ["Lower GI", "Calcium & B vitamins", "Firm grains"],
@@ -116,7 +116,7 @@ export const products = [
     id: 12,
     category: "Daily Staples",
     title: "IR64 Parboiled Rice",
-    image: "/images/ir64-parboiled-rice.jpg",
+    image: "/images/IR64 Parboiled Rice.png",
     description:
       "Long, non-sticky grains perfect for variety rice and catering.",
     features: ["Grains stay separate", "High energy", "Catering friendly"],
@@ -124,9 +124,9 @@ export const products = [
   },
   {
     id: 13,
-    category: "Daily Staples",
+    category: "Traditional Rice",
     title: "Thooyamalli Boiled White Rice",
-    image: "/images/thooyamalli-rice-500g.jpg",
+    image: "/images/thooyamalli-rice.jpg",
     description:
       '"Pure Jasmine" rice with pest resistance that supports the nervous system.',
     features: ["Nervous system support", "Immune boost", "Fragrant grain"],
@@ -134,7 +134,7 @@ export const products = [
   },
   {
     id: 14,
-    category: "Daily Staples",
+    category: "Traditional Rice",
     title: "Kichilli Samba Boiled White Rice",
     image: "/images/kichili-samba-rice.jpg",
     description:
@@ -146,7 +146,7 @@ export const products = [
     id: 15,
     category: "Daily Staples",
     title: "Idly Rice",
-    image: "/images/idly-rice.jpg",
+    image: "/images/Idly Rice.png",
     description:
       "Short-grain parboiled rice processed for soft, fluffy idlis.",
     features: ["Soft idlis", "Better B-vitamin retention", "Sustained energy"],
@@ -188,7 +188,7 @@ export const products = [
     id: 19,
     category: "Millets",
     title: "Pearl Millet (Kambu/Bajra)",
-    image: "/images/pearl-millet.jpg",
+    image: "/images/Pearl Millet.png",
     description:
       "Cooling millet traditionally used to ease acidity.",
     features: ["Body cooling", "Treats acidity", "Iron rich"],
@@ -198,7 +198,7 @@ export const products = [
     id: 20,
     category: "Millets",
     title: "Finger Millet (Ragi)",
-    image: "/images/finger-millet.jpg",
+    image: "/images/Finger Millet.png",
     description:
       "Top calcium source for bone density and strength.",
     features: ["Highest calcium", "Bone health", "Gluten-free"],
@@ -218,7 +218,7 @@ export const products = [
     id: 22,
     category: "Millets",
     title: "White Sorghum (Vella Solam)",
-    image: "/images/white-sorghum.jpg",
+    image: "/images/White Sorghum.png",
     description:
       "Gluten-free wheat alternative rich in magnesium.",
     features: ["Gluten-free", "Wheat alternative", "Magnesium rich"],
@@ -230,7 +230,7 @@ export const products = [
     id: 23,
     category: "Flakes",
     title: "Karuppu Kavuni Flakes",
-    image: "/images/karuppu-kavuni-flakes.jpg",
+    image: "/images/karuppu-kavuni-rice.jpg",
     description:
       "Heart-healthy antioxidant flakes made from black rice.",
     features: ["Antioxidant rich", "Heart supportive", "Ready-to-cook"],
@@ -240,7 +240,7 @@ export const products = [
     id: 24,
     category: "Flakes",
     title: "Mapillai Samba Flakes",
-    image: "/images/mapillai-samba-flakes.jpg",
+    image: "/images/mappilai-samba-rice.jpg",
     description:
       '"Energy Flakes" delivering instant stamina from heritage rice.',
     features: ["Energy boosting", "Mineral rich", "Quick prep"],
@@ -250,7 +250,7 @@ export const products = [
     id: 25,
     category: "Flakes",
     title: "Red Rice Flakes",
-    image: "/images/red-rice-flakes.jpg",
+    image: "/images/poongar-rice.jpg",
     description:
       "Flakes from Poongar/Kattuyanam to support hormonal balance and diabetes control.",
     features: ["Hormonal support", "Diabetic friendly", "Wholegrain flakes"],
@@ -260,11 +260,101 @@ export const products = [
     id: 26,
     category: "Flakes",
     title: "Millet Flakes (Assorted)",
-    image: "/images/millet-flakes.jpg",
+    image: "/images/millets.jpg",
     description:
       "Assorted millet flakes in Ragi, Pearl Millet, and Kodo variants.",
     features: ["Calcium rich (Ragi)", "Cooling (Pearl)", "Detox (Kodo)"],
     nutrition: { Notes: "Whole millet goodness; quick cook" },
+  },
+  {
+    id: 38,
+    category: "Flakes",
+    title: "Ragi Flakes",
+    image: "/images/millets.jpg",
+    description: "Calcium-rich finger millet flakes ideal for porridge, upma and snacks.",
+    features: ["High calcium", "Bone support", "Quick cooking"],
+    nutrition: { Notes: "Made from whole ragi (finger millet)" },
+  },
+  {
+    id: 39,
+    category: "Flakes",
+    title: "Pearl Millet Flakes",
+    image: "/images/millets.jpg",
+    description: "Cooling pearl millet flakes traditionally used in summer porridges.",
+    features: ["Body cooling", "Good fibre", "Ready-to-cook"],
+    nutrition: { Notes: "Made from whole pearl millet (kambu/bajra)" },
+  },
+  {
+    id: 40,
+    category: "Flakes",
+    title: "Kodo Millet Flakes",
+    image: "/images/kodo-millet.jpg",
+    description: "Detox-friendly kodo millet flakes for light, wholesome meals.",
+    features: ["Detox support", "Gluten free", "Light on digestion"],
+    nutrition: { Notes: "Made from whole kodo millet (varagu)" },
+  },
+  {
+    id: 41,
+    category: "Flakes",
+    title: "Barnyard Millet Flakes",
+    image: "/images/barnyard-millet.jpg",
+    description: "High-fibre barnyard millet flakes for weight management recipes.",
+    features: ["High fibre", "Weight management", "Low GI"],
+    nutrition: { Notes: "Made from barnyard millet (kudhiraivali)" },
+  },
+  {
+    id: 42,
+    category: "Flakes",
+    title: "Foxtail Millet Flakes",
+    image: "/images/foxtail-millet.jpg",
+    description: "Heart-supportive foxtail millet flakes for savoury and sweet dishes.",
+    features: ["Heart supportive", "Good protein", "Versatile use"],
+    nutrition: { Notes: "Made from foxtail millet (thinai)" },
+  },
+  {
+    id: 43,
+    category: "Flakes",
+    title: "Thooyamalli Flakes",
+    image: "/images/thooyamalli-rice.jpg",
+    description: "Fragrant thooyamalli rice flakes with soft texture and gentle aroma.",
+    features: ["Fragrant", "Soft texture", "Traditional rice flakes"],
+    nutrition: { Notes: "Made from thooyamalli traditional rice" },
+  },
+  {
+    id: 44,
+    category: "Flakes",
+    title: "Poongar Flakes",
+    image: "/images/poongar-rice.jpg",
+    description: "Nutritious poongar red rice flakes associated with women’s health.",
+    features: ["Supports women’s health", "Wholegrain", "Low GI"],
+    nutrition: { Notes: "Made from poongar traditional rice" },
+  },
+  {
+    id: 45,
+    category: "Flakes",
+    title: "Kattuyanam Flakes",
+    image: "/images/kattu-yanam-rice.jpg",
+    description: "Metabolism-friendly kattuyanam rice flakes for everyday breakfasts.",
+    features: ["Metabolic support", "Diabetic friendly", "Wholegrain flakes"],
+    nutrition: { Notes: "Made from kattuyanam traditional rice" },
+  },
+  {
+    id: 46,
+    category: "Flakes",
+    title: "Karunkuravai Flakes",
+    image: "/images/karunkuruvai-rice.jpg",
+    description: "Iron-rich karunkuravai traditional rice flakes for hearty meals.",
+    features: ["Iron support", "Traditional variety", "Wholesome flakes"],
+    nutrition: { Notes: "Made from karunkuravai traditional black rice" },
+  },
+  {
+    id: 47,
+    category: "Flakes",
+    title: "Wheat Flakes",
+    image: "/images/cereals.png",
+    description: "Classic wheat flakes ideal for breakfast bowls and snack mixes.",
+    features: ["Energy rich", "Familiar taste", "Quick breakfast option"],
+    nutrition: { Notes: "Made from whole wheat" },
   },
 
   // V. PULSES & PROTEINS
@@ -282,7 +372,7 @@ export const products = [
     id: 28,
     category: "Pulses",
     title: "White Urad Dal (Ullundu)",
-    image: "/images/white-urad-dal.jpg",
+    image: "/images/pulses.png",
     description:
       "Strengthens hips and back; improves digestion.",
     features: ["Bone & joint support", "Digestive aid", "Protein dense"],
@@ -292,7 +382,7 @@ export const products = [
     id: 29,
     category: "Pulses",
     title: "Black Urad Dal (Whole)",
-    image: "/images/black-urad-dal.jpg",
+    image: "/images/pulses.png",
     description:
       "Whole black urad with skin for superior fibre and vitality.",
     features: ["High fibre", "Boosts vitality", "Iron rich"],
@@ -304,7 +394,7 @@ export const products = [
     id: 30,
     category: "Fresh Produce",
     title: "Red Onion",
-    image: "/images/red-onion.jpg",
+    image: "/images/cereals.png",
     description:
       "Rich in quercetin and anthocyanins; strong immunity support.",
     features: ["High antioxidants", "Vitamin C rich", "Bold flavor"],
@@ -314,7 +404,7 @@ export const products = [
     id: 31,
     category: "Fresh Produce",
     title: "Pink Onion (Rose Onion)",
-    image: "/images/pink-onion.jpg",
+    image: "/images/cereals.png",
     description:
       "Sweeter onion with cooling effect and higher natural sugars.",
     features: ["Cooling", "Sweeter profile", "Hydrating"],
@@ -326,7 +416,7 @@ export const products = [
     id: 32,
     category: "Gourmet",
     title: "Palm Sugar",
-    image: "/images/palm-sugar.jpg",
+    image: "/images/cereals.png",
     description:
       "Low GI natural sweetener rich in iron and zinc.",
     features: ["Low GI (~35)", "Iron & zinc", "Natural energy"],
@@ -336,7 +426,7 @@ export const products = [
     id: 33,
     category: "Gourmet",
     title: "Palm Candy (Panakkarkandu)",
-    image: "/images/palm-candy.jpg",
+    image: "/images/cereals.png",
     description:
       "Traditional throat soother with minerals.",
     features: ["Soothes throat", "Mineral rich", "Traditional sweet"],
@@ -346,7 +436,7 @@ export const products = [
     id: 34,
     category: "Gourmet",
     title: "Coconut Sugar",
-    image: "/images/coconut-sugar.jpg",
+    image: "/images/cereals.png",
     description:
       "Sustainable sweetener containing inulin fibre.",
     features: ["Inulin fibre", "Sustainable", "Low-refine"],
@@ -356,7 +446,7 @@ export const products = [
     id: 35,
     category: "Gourmet",
     title: "Jaggery (Cane)",
-    image: "/images/jaggery-cane.jpg",
+    image: "/images/cereals.png",
     description:
       "Digestive aid that helps cleanse the liver.",
     features: ["Digestive support", "Liver cleanse aid", "Mineral sweetener"],
@@ -366,7 +456,7 @@ export const products = [
     id: 36,
     category: "Gourmet",
     title: "Dry Fruits Assortment",
-    image: "/images/dry-fruits.jpg",
+    image: "/images/cereals.png",
     description:
       "Premium mix for instant energy and bone health.",
     features: ["Instant energy", "Bone health", "Rich micronutrients"],
@@ -376,7 +466,7 @@ export const products = [
     id: 37,
     category: "Gourmet",
     title: "Nuts Assortment",
-    image: "/images/mixed-nuts.jpg",
+    image: "/images/cereals.png",
     description:
       "Heart-healthy mix with Omega-3 rich nuts.",
     features: ["Omega-3 fats", "Heart healthy", "Great snacks"],

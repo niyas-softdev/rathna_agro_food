@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { HiMiniXMark } from "react-icons/hi2";
 import { products as productCatalog } from "../../data/products";
 
@@ -9,7 +10,7 @@ const PHONE_NUMBER = "+91 90439 43016";
 
 function Pill({ children }) {
   return (
-    <span className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-2.5 py-0.5 text-[11px] font-medium text-white/80 backdrop-blur">
+    <span className="inline-flex items-center rounded-full border border-slate-300/60 bg-slate-100/80 px-2.5 py-0.5 text-[11px] font-medium text-slate-700 backdrop-blur">
       {children}
     </span>
   );
@@ -17,7 +18,7 @@ function Pill({ children }) {
 
 function ProductCard({ product, onSelect }) {
   const [imgError, setImgError] = useState(false);
-  
+
   const safeSrc =
     product.image && typeof product.image === "string" && product.image.trim() !== ""
       ? product.image.replace(/\s+/g, "%20") // URL encode spaces for production
@@ -29,37 +30,51 @@ function ProductCard({ product, onSelect }) {
         .slice(0, 2)
         .map(([key, value]) => `${key}: ${value}`);
 
+  const hasPrice = typeof product.price === "number";
+  const priceLabel = hasPrice ? `₹${product.price.toLocaleString("en-IN")}` : "Contact for price";
+  const brandLabel = product.brand || product.category || "Rathna Agro Foods";
+
   return (
-    <article className="glass-soft h-full flex flex-col overflow-hidden border border-white/5 transition-all duration-300 hover:-translate-y-1 hover:border-[#fbbf24]/50 hover:shadow-xl">
-      <div className="relative">
-        <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#1e293b]/50">
-          {!imgError ? (
-            <Image
-              src={safeSrc}
-              alt={product.title}
-              fill
-              className="object-cover transition-transform duration-500 hover:scale-105"
-              sizes="(min-width: 1024px) 320px, 100vw"
-              onError={() => setImgError(true)}
-              unoptimized
-            />
-          ) : (
-            <div className="flex items-center justify-center h-full text-white/40 text-sm">
-              Image unavailable
-            </div>
-          )}
-        </div>
-        <span className="absolute left-3 top-3 rounded-full bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] px-3 py-1 text-[11px] font-semibold text-[#0f172a] shadow-lg shadow-[#fbbf24]/30">
+    <article className="glass-soft h-full flex flex-col overflow-hidden border border-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:border-orange-300/80 hover:shadow-xl hover:shadow-orange-100/50">
+      {/* IMAGE AREA – smaller card, full image (no crop) */}
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-white px-4 pt-4">
+        {!imgError ? (
+          <Image
+            src={safeSrc}
+            alt={product.title}
+            fill
+            className="object-contain transition-transform duration-500 hover:scale-105"
+            sizes="(min-width: 1024px) 320px, 100vw"
+            onError={() => setImgError(true)}
+            unoptimized
+          />
+        ) : (
+          <div className="flex items-center justify-center h-full text-slate-400 text-sm">
+            Image unavailable
+          </div>
+        )}
+
+        {/* Category pill */}
+        <span className="absolute left-3 top-3 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 px-3 py-1 text-[11px] font-semibold text-white shadow-lg shadow-orange-300/50">
           {product.category}
         </span>
       </div>
 
-      <div className="flex-1 p-5 space-y-3 text-left">
+      {/* CONTENT AREA – title, brand, rating, price, actions */}
+      <div className="flex-1 p-4 space-y-3 text-left">
         <div>
-          <h3 className="text-lg font-semibold text-white">{product.title}</h3>
-          <p className="text-sm text-white/80 leading-relaxed">
-            {product.description}
-          </p>
+          <h3 className="text-base sm:text-lg font-semibold text-slate-800 line-clamp-2">
+            {product.title}
+          </h3>
+          <p className="text-xs text-slate-500 mt-1">{brandLabel}</p>
+        </div>
+
+        {/* Static rating row for now */}
+        <div className="flex items-center gap-1 text-amber-400 text-xs">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <span key={i}>★</span>
+          ))}
+          <span className="ml-1 text-[11px] text-slate-500">(0 reviews)</span>
         </div>
 
         {highlights?.length > 0 && (
@@ -70,20 +85,24 @@ function ProductCard({ product, onSelect }) {
           </div>
         )}
 
-        <div className="pt-2 flex flex-col gap-2">
+        {/* Price + view details */}
+        <div className="flex items-center justify-between pt-1">
+          <span className="text-sm sm:text-base font-semibold text-slate-900">
+            {priceLabel}
+          </span>
           <button
             type="button"
             onClick={() => onSelect(product)}
-            className="w-full rounded-lg bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] px-4 py-2 text-sm font-semibold text-[#0f172a] shadow-lg shadow-[#fbbf24]/30 transition-all hover:-translate-y-0.5 hover:shadow-xl"
+            className="text-xs font-semibold text-orange-600 hover:text-orange-700 underline underline-offset-2"
           >
-            View Details
+            View details
           </button>
-          <div className="flex items-center gap-2 text-xs text-white/70">
-            <span className="h-px flex-1 bg-white/10" />
-            Tap for specs & quote
-            <span className="h-px flex-1 bg-white/10" />
-          </div>
         </div>
+
+        {/* Helper text instead of cart controls */}
+        <p className="mt-3 text-[11px] sm:text-xs text-slate-500">
+          Click <span className="font-semibold">View details</span> for pack sizes, specs and quote.
+        </p>
       </div>
     </article>
   );
@@ -92,8 +111,8 @@ function ProductCard({ product, onSelect }) {
 function DetailRow({ label, value }) {
   if (!value) return null;
   return (
-    <div className="text-sm text-white/90">
-      <p className="text-xs uppercase tracking-wide text-white/60">{label}</p>
+    <div className="text-sm text-slate-700">
+      <p className="text-xs uppercase tracking-wide text-slate-500">{label}</p>
       <p className="font-medium">{value}</p>
     </div>
   );
@@ -106,25 +125,32 @@ function ProductDetailSheet({ product, onClose }) {
 
   const nutritionEntries = Object.entries(product.nutrition || {});
   const specificationEntries = Object.entries(product.specification || {});
-  
-  const safeImageSrc = product.image 
-    ? product.image.replace(/\s+/g, "%20") 
-    : "/placeholder.jpg";
+
+  // Use the same safe image logic as the product card
+  const safeImageSrc =
+    product.image && typeof product.image === "string" && product.image.trim() !== ""
+      ? product.image.replace(/\s+/g, "%20")
+      : "/placeholder.jpg";
+
+  const hasPrice = typeof product.price === "number";
+  const priceLabel = hasPrice ? `₹${product.price.toLocaleString("en-IN")}` : "Contact for price";
+  const brandLabel = product.brand || product.category || "Rathna Agro Foods";
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#020617]/80 px-4 py-8">
-      <div className="relative max-w-4xl w-full bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-3xl border border-white/10 shadow-2xl overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm px-4 py-8">
+      <div className="relative max-w-4xl w-full bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden">
         <button
           type="button"
           onClick={onClose}
-          className="absolute right-4 top-4 rounded-full bg-white/10 p-2 text-white hover:bg-white/20"
+          className="absolute right-4 top-4 rounded-full bg-slate-100 p-2 text-slate-700 hover:bg-slate-200 transition-colors"
           aria-label="Close details"
         >
           <HiMiniXMark className="h-5 w-5" />
         </button>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-0 max-h-[90vh] overflow-y-auto">
-        <div className="relative min-h-[320px] bg-[#1e293b]/50">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.1fr] gap-0 max-h-[90vh] lg:max-h-[80vh] overflow-y-auto">
+          {/* LEFT: LARGE IMAGE */}
+          <div className="relative min-h-[260px] sm:min-h-[320px] bg-slate-100">
             {!imgError ? (
               <Image
                 src={safeImageSrc}
@@ -136,25 +162,39 @@ function ProductDetailSheet({ product, onClose }) {
                 unoptimized
               />
             ) : (
-              <div className="flex items-center justify-center h-full text-white/40 text-sm">
+              <div className="flex items-center justify-center h-full text-slate-400 text-sm">
                 Image unavailable
               </div>
             )}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/80 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent"></div>
             <div className="absolute bottom-4 left-4 right-4 space-y-1">
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fbbf24]">
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-500">
                 {product.category}
               </span>
-              <h3 className="text-2xl font-bold text-white">{product.title}</h3>
+              <h3 className="text-2xl font-bold text-white drop-shadow-lg">{product.title}</h3>
             </div>
           </div>
 
-          <div className="p-6 sm:p-8 space-y-6">
-            <p className="text-sm text-white/85 leading-relaxed">{product.description}</p>
+          {/* RIGHT: DETAILS */}
+          <div className="p-6 sm:p-8 space-y-6 bg-white">
+            {/* Title, brand, price */}
+            <div className="space-y-1">
+              <h3 className="text-lg sm:text-xl font-semibold text-slate-900">
+                {product.title}
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-500">{brandLabel}</p>
+              <p className="text-sm sm:text-base font-semibold text-slate-900 mt-1">
+                {priceLabel}
+              </p>
+            </div>
+
+            <p className="text-sm text-slate-600 leading-relaxed">
+              {product.description}
+            </p>
 
             {product.features?.length ? (
               <div className="space-y-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fbbf24]">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-600">
                   Key Features
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -167,10 +207,10 @@ function ProductDetailSheet({ product, onClose }) {
 
             {specificationEntries.length > 0 && (
               <div className="space-y-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fbbf24]">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-600">
                   Specification
                 </p>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-3 rounded-xl border border-slate-100 bg-slate-50/60 p-3">
                   {specificationEntries.map(([label, value]) => (
                     <DetailRow key={label} label={label} value={value} />
                   ))}
@@ -180,10 +220,10 @@ function ProductDetailSheet({ product, onClose }) {
 
             {nutritionEntries.length > 0 && (
               <div className="space-y-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#fbbf24]">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-600">
                   Nutrition (per 100g)
                 </p>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-3 rounded-xl border border-slate-100 bg-slate-50/60 p-3">
                   {nutritionEntries.map(([label, value]) => (
                     <DetailRow key={label} label={label} value={value} />
                   ))}
@@ -191,16 +231,16 @@ function ProductDetailSheet({ product, onClose }) {
               </div>
             )}
 
-            <div className="flex flex-col sm:flex-row gap-3 pt-2">
+            <div className="flex flex-col sm:flex-row gap-3 pt-2 border-t border-slate-100 mt-2 pt-4">
               <a
                 href="#contact"
-                className="flex-1 rounded-lg bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] px-4 py-3 text-center text-sm font-semibold text-[#0f172a] shadow-lg shadow-[#fbbf24]/30 transition-all hover:-translate-y-0.5 hover:shadow-xl"
+                className="flex-1 rounded-lg bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 px-4 py-3 text-center text-sm font-semibold text-white shadow-lg shadow-orange-300/50 transition-all hover:-translate-y-0.5 hover:shadow-xl"
               >
                 Get Quote
               </a>
               <a
                 href={`tel:${PHONE_NUMBER.replace(/[^+\d]/g, "")}`}
-                className="flex-1 rounded-lg border border-[#fbbf24]/60 px-4 py-3 text-center text-sm font-semibold text-[#fbbf24] hover:bg-[#fbbf24]/10 transition-all"
+                className="flex-1 rounded-lg border border-orange-400 px-4 py-3 text-center text-sm font-semibold text-orange-600 hover:bg-orange-50 transition-all"
               >
                 Call Now
               </a>
@@ -213,7 +253,10 @@ function ProductDetailSheet({ product, onClose }) {
 }
 
 export default function Products({ limit }) {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const searchParams = useSearchParams();
+  const initialCategory = searchParams.get("cat") || "All";
+
+  const [activeCategory, setActiveCategory] = useState(initialCategory);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const list = useMemo(() => {
@@ -231,13 +274,13 @@ export default function Products({ limit }) {
     <section id="products" className="px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto space-y-8">
         <div className="text-center space-y-3">
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#fbbf24]">
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-orange-600">
             Products
           </p>
-          <h2 className="text-2xl sm:text-3xl font-semibold text-white">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-slate-800">
             Our best-selling agro staples
           </h2>
-          <p className="max-w-2xl mx-auto text-sm sm:text-base text-white/90">
+          <p className="max-w-2xl mx-auto text-sm sm:text-base text-slate-600">
             Explore premium grade millets, rice, cereals and commodities curated for retailers,
             wholesalers and export buyers.
           </p>
@@ -252,8 +295,8 @@ export default function Products({ limit }) {
                 onClick={() => setActiveCategory(cat)}
                 className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-all ${
                   activeCategory === cat
-                    ? "bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] text-[#0f172a] shadow-lg shadow-[#fbbf24]/30"
-                    : "glass-gold text-[#fbbf24]"
+                    ? "bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-lg shadow-orange-300/50"
+                    : "glass-gold text-orange-600"
                 }`}
               >
                 {cat}

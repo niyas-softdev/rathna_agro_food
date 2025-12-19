@@ -13,13 +13,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
-        className="bg-gradient-to-br from-[#1e293b] via-[#334155] to-[#1e293b] text-white antialiased"
+        className=" text-slate-800 antialiased"
         suppressHydrationWarning
       >
         <AOSProvider>
         <div className="flex flex-col min-h-screen">
           <Navbar />
-          <main className="flex-1 pt-0 pb-12">{children}</main>
+          <main className="flex-1 pt-[64px] sm:pt-[134px] pb-12">
+  {children}
+</main>
           <Footer />
         </div>
         </AOSProvider>
