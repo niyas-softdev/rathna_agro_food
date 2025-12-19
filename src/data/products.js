@@ -54,7 +54,7 @@ export const products = [
     id: 6,
     category: "Traditional Rice",
     title: "Moongil Rice (Bamboo Rice)",
-    image: "/images/Moongil Rice.png",
+    image: "/images/Moongil-Rice.png",
     description:
       "Rare bamboo seed grain, prized for relieving joint and back pain.",
     features: ["Joint support", "Mineral rich", "Rare harvest"],
@@ -96,7 +96,7 @@ export const products = [
     id: 10,
     category: "Daily Staples",
     title: "Sona Masuri Rice",
-    image: "/images/Sona Masuri Rice.png",
+    image: "/images/Sona-Masuri-Rice.png",
     description:
       "Lightweight, aromatic grain ideal for daily meals and easy digestion.",
     features: ["Lower calories", "Daily table rice", "Soft texture"],
@@ -106,7 +106,7 @@ export const products = [
     id: 11,
     category: "Daily Staples",
     title: "Ponni Boiled Rice",
-    image: "/images/Ponni Boiled Rice.png",
+    image: "/images/Ponni-Boiled-Rice.png",
     description:
       "Firm textured parboiled rice that retains more nutrients than raw rice.",
     features: ["Lower GI", "Calcium & B vitamins", "Firm grains"],
@@ -116,7 +116,7 @@ export const products = [
     id: 12,
     category: "Daily Staples",
     title: "IR64 Parboiled Rice",
-    image: "/images/IR64 Parboiled Rice.png",
+    image: "/images/IR64-Parboiled-Rice.png",
     description:
       "Long, non-sticky grains perfect for variety rice and catering.",
     features: ["Grains stay separate", "High energy", "Catering friendly"],
@@ -146,7 +146,7 @@ export const products = [
     id: 15,
     category: "Daily Staples",
     title: "Idly Rice",
-    image: "/images/Idly Rice.png",
+    image: "/images/Idly-Rice.png",
     description:
       "Short-grain parboiled rice processed for soft, fluffy idlis.",
     features: ["Soft idlis", "Better B-vitamin retention", "Sustained energy"],
@@ -188,7 +188,7 @@ export const products = [
     id: 19,
     category: "Millets",
     title: "Pearl Millet (Kambu/Bajra)",
-    image: "/images/Pearl Millet.png",
+    image: "/images/Pearl-Millet.png",
     description:
       "Cooling millet traditionally used to ease acidity.",
     features: ["Body cooling", "Treats acidity", "Iron rich"],
@@ -198,7 +198,7 @@ export const products = [
     id: 20,
     category: "Millets",
     title: "Finger Millet (Ragi)",
-    image: "/images/Finger Millet.png",
+    image: "/images/Finger-Millet.png",
     description:
       "Top calcium source for bone density and strength.",
     features: ["Highest calcium", "Bone health", "Gluten-free"],
@@ -218,7 +218,7 @@ export const products = [
     id: 22,
     category: "Millets",
     title: "White Sorghum (Vella Solam)",
-    image: "/images/White Sorghum.png",
+    image: "/images/White-Sorghum.png",
     description:
       "Gluten-free wheat alternative rich in magnesium.",
     features: ["Gluten-free", "Wheat alternative", "Magnesium rich"],

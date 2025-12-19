@@ -36,7 +36,7 @@ export default function Navbar() {
           {/* LOGO */}
           <Link href="/" className="flex items-center">
   <Image
-    src="/images/RATHNA LOGO.png"
+    src="/images/RATHNA-LOGO.png"
     alt="Rathna Agro Foods Logo"
     width={360}
     height={140}
