@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Hero from "./components/Hero";
 import AboutIntro from "./components/AboutIntro";
 import Features from "./components/Features";
@@ -15,7 +16,9 @@ export default function Home() {
       <Features />
       <AboutIntro />
       <Stats />
-      <Products limit={3} />
+      <Suspense fallback={<div className="px-4 sm:px-6 lg:px-8 py-12 text-center text-slate-600">Loading products...</div>}>
+        <Products limit={3} />
+      </Suspense>
       <Testimonials />
       <ContactForm />
     </div>
