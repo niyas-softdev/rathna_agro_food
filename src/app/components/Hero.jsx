@@ -39,7 +39,7 @@ export default function Hero() {
       <div
         className="
           relative w-full
-          h-[260px] sm:h-[70vh] lg:h-screen
+          h-[200px] sm:h-[60vh] lg:h-[85vh]
         "
       >
         {slides.map((src, i) => (
