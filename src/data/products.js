@@ -259,7 +259,7 @@ export const products = [
   {
     id: 26,
     category: "Flakes",
-    title: "Millet Flakes (Assorted)",
+    title: "Little Millet Flakes (Assorted)",
     image: "/images/flakes/millet-flakes.png",
     description:
       "Assorted millet flakes in Ragi, Pearl Millet, and Kodo variants.",
