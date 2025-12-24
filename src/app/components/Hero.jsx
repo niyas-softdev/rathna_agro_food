@@ -4,11 +4,11 @@ import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 
 const slides = [
-  
-  "/images/banner2.jpg",
+  "/images/millet-hero.png",
+
   "/images/banner3.jpg",
   "/images/banner4.jpg",
-  "/images/banner6.jpg",
+  "/images/flakes-hero.png",
 ];
 
 export default function Hero() {
