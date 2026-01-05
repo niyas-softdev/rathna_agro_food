@@ -416,7 +416,7 @@ export const products = [
     id: 32,
     category: "Gourmet",
     title: "Palm Sugar",
-    image: "/images/palm-sugar.jpg",
+    image: "/images/gourmet/palm-sugar.jpg",
     description:
       "Low GI natural sweetener rich in iron and zinc.",
     features: ["Low GI (~35)", "Iron & zinc", "Natural energy"],
@@ -426,7 +426,7 @@ export const products = [
     id: 33,
     category: "Gourmet",
     title: "Palm Candy (Panakkarkandu)",
-    image: "/images/palm-candy.jpg",
+    image: "/images/gourmet/palm-candy.jpg",
     description:
       "Traditional throat soother with minerals.",
     features: ["Soothes throat", "Mineral rich", "Traditional sweet"],
@@ -436,7 +436,7 @@ export const products = [
     id: 34,
     category: "Gourmet",
     title: "Coconut Sugar",
-    image: "/images/coconut-sugar.jpg",
+    image: "/images/gourmet/coconut-sugar.jpg",
     description:
       "Sustainable sweetener containing inulin fibre.",
     features: ["Inulin fibre", "Sustainable", "Low-refine"],
@@ -446,7 +446,7 @@ export const products = [
     id: 35,
     category: "Gourmet",
     title: "Jaggery (Cane)",
-    image: "/images/jaggery-powder.jpg",
+    image: "/images/gourmet/jaggery-powder.jpg",
     description:
       "Digestive aid that helps cleanse the liver.",
     features: ["Digestive support", "Liver cleanse aid", "Mineral sweetener"],
@@ -456,7 +456,7 @@ export const products = [
     id: 36,
     category: "Gourmet",
     title: "Dry Fruits Assortment",
-    image: "/images/dry-fruits-assortment.jpg",
+    image: "/images/gourmet/dry-fruits-assortment.jpg",
     description:
       "Premium mix for instant energy and bone health.",
     features: ["Instant energy", "Bone health", "Rich micronutrients"],
