@@ -7,25 +7,35 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-8 md:gap-10">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center shadow-lg shadow-orange-300/50">
-                <span className="text-sm font-bold text-white">RA</span>
-              </div>
-              <div className="flex flex-col leading-tight">
-                <span className="font-bold text-base text-orange-600">
-                  RATHNA
-                </span>
-                <span className="text-[10px] text-emerald-600 font-medium">
-                  AGRO FOODS
-                </span>
-              </div>
-            </div>
-            <p className="text-xs sm:text-sm text-slate-600 max-w-sm leading-relaxed">
-              Supplying carefully curated agro commodities to wholesalers,
-              retailers and food businesses with a strong focus on quality,
-              consistency and reliability.
-            </p>
-          </div>
+  <div className="flex items-center gap-3">
+    
+    {/* Logo Container */}
+    <div className="h-18 w-18 ">
+      <img
+        src="/favicon.ico"   // 👈 unga logo path
+        alt="Rathna Agro Foods Logo"
+        className="h-18 w-18 object-contain"
+      />
+    </div>
+
+    {/* Brand Text */}
+    <div className="flex flex-col leading-tight">
+      <span className="font-bold text-base text-orange-600">
+        RATHNA
+      </span>
+      <span className="text-[10px] text-emerald-600 font-medium">
+        AGRO FOODS
+      </span>
+    </div>
+  </div>
+
+  <p className="text-xs sm:text-sm text-slate-600 max-w-sm leading-relaxed">
+    Supplying carefully curated agro commodities to wholesalers,
+    retailers and food businesses with a strong focus on quality,
+    consistency and reliability.
+  </p>
+</div>
+
 
           {/* Contact */}
           <div className="space-y-4 text-xs sm:text-sm">

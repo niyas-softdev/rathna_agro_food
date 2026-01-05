@@ -7,10 +7,10 @@ import { Menu, X, ChevronDown } from "lucide-react";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
+  { href: "/about", label: "Who We Are" },
   { href: "/products", label: "Products" },
-  { href: "/contact", label: "Contact" },
-  { href: "/blog", label: "Blog" },
+  { href: "/contact", label: "Contact Us" },
+  { href: "/blog", label: "Blog " },
 ];
 
 const productCategories = [
@@ -30,29 +30,20 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 left-0 w-full z-50">
       {/* ================= MAIN NAVBAR ================= */}
-      <div className="bg-white/95 backdrop-blur-md border-b border-orange-200 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[104px] flex items-center justify-between">
+      <div className="bg-white/95 backdrop-blur-md border-b border-orange-200 shadow-sm relative z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[104px] flex items-center justify-between">
 
-          {/* LOGO (LITE BIGGER & PERFECT) */}
+          {/* LOGO */}
           <Link href="/" className="flex items-center">
-  <Image
-    src="/images/RATHNA-LOGO.png"
-    alt="Rathna Agro Foods Logo"
-    width={340}
-    height={140}
-    priority
-    className="
-      h-12        /* mobile */
-      sm:h-16    /* tablet */
-      md:h-18    /* small desktop */
-      lg:h-20     /* large desktop */
-      w-auto
-      object-contain
-    "
-  />
-</Link>
-
-
+            <Image
+              src="/images/RATHNA-LOGO.png"
+              alt="Rathna Agro Foods Logo"
+              width={340}
+              height={140}
+              priority
+              className="h-12 sm:h-16 md:h-18 lg:h-20 w-auto object-contain"
+            />
+          </Link>
 
           {/* ================= DESKTOP MENU ================= */}
           <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm lg:text-[15px] font-medium">
@@ -72,7 +63,9 @@ export default function Navbar() {
                     Products <ChevronDown size={16} />
                   </button>
 
-                  <div className="absolute left-0 top-full mt-3 w-56 bg-white rounded-xl shadow-lg border border-orange-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                  {/* DROPDOWN */}
+                  <div className="absolute left-0 top-full mt-3 w-56 bg-white rounded-xl shadow-lg border border-orange-100
+                  z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
                     {productCategories.map((cat) => (
                       <Link
                         key={cat.label}
@@ -111,9 +104,7 @@ export default function Navbar() {
       {/* ================= MOBILE MENU ================= */}
       <div
         className={`md:hidden bg-white border-t border-orange-100 shadow-lg transition-all duration-300 ${
-          menuOpen
-            ? "max-h-screen opacity-100"
-            : "max-h-0 opacity-0 overflow-hidden"
+          menuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 overflow-hidden"
         }`}
       >
         <nav className="flex flex-col px-4 py-4 space-y-4 text-sm font-medium">
@@ -136,9 +127,7 @@ export default function Navbar() {
                   Products
                   <ChevronDown
                     size={16}
-                    className={`transition-transform ${
-                      productsOpen ? "rotate-180" : ""
-                    }`}
+                    className={`transition-transform ${productsOpen ? "rotate-180" : ""}`}
                   />
                 </button>
 
@@ -170,37 +159,35 @@ export default function Navbar() {
       </div>
 
       {/* ================= TOP MARQUEE BAR ================= */}
-      <div className="hidden sm:block bg-[#dff3b3] overflow-hidden py-2  group">
-  <div className="relative w-full overflow-hidden">
-    <div className="flex w-max animate-marquee gap-10 group-hover:pause-marquee text-sm font-medium text-slate-800 z-1">
+      <div className="hidden sm:block bg-[#dff3b3] overflow-hidden py-2 pointer-events-none relative z-10">
+        <div className="relative w-full overflow-hidden">
+          <div className="flex w-max animate-marquee gap-10 text-sm font-medium text-slate-800">
 
-      {/* === FIRST SET === */}
-      <div className="flex items-center gap-10 whitespace-nowrap">
-        <span className="text-red-500 text-lg font-bold">««</span>
-        <span>Trusted by 1,70,000+ Happy Customers</span>
+            <div className="flex items-center gap-10 whitespace-nowrap">
+              <span className="text-red-500 text-lg font-bold">««</span>
+              <span>Trusted by 1,70,000+ Happy Customers</span>
 
-        <span className="text-red-500 text-lg font-bold">««</span>
-        <span>100% Natural food products company</span>
+              <span className="text-red-500 text-lg font-bold">««</span>
+              <span>100% Natural food products company</span>
 
-        <span className="text-red-500 text-lg font-bold">««</span>
-        <span>No added preservatives & chemicals</span>
+              <span className="text-red-500 text-lg font-bold">««</span>
+              <span>No added preservatives & chemicals</span>
+            </div>
+
+            <div className="flex items-center gap-10 whitespace-nowrap">
+              <span className="text-red-500 text-lg font-bold">««</span>
+              <span>Trusted by 1,70,000+ Happy Customers</span>
+
+              <span className="text-red-500 text-lg font-bold">««</span>
+              <span>100% Natural food products company</span>
+
+              <span className="text-red-500 text-lg font-bold">««</span>
+              <span>No added preservatives & chemicals</span>
+            </div>
+
+          </div>
+        </div>
       </div>
-
-      {/* === DUPLICATE SET (for seamless loop) === */}
-      <div className="flex items-center gap-10 whitespace-nowrap">
-        <span className="text-red-500 text-lg font-bold">««</span>
-        <span>Trusted by 1,70,000+ Happy Customers</span>
-
-        <span className="text-red-500 text-lg font-bold">««</span>
-        <span>100% Natural food products company</span>
-
-        <span className="text-red-500 text-lg font-bold">««</span>
-        <span>No added preservatives & chemicals</span>
-      </div>
-
-    </div>
-  </div>
-</div>
     </header>
   );
 }

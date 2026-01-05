@@ -315,7 +315,7 @@ export const products = [
     id: 43,
     category: "Flakes",
     title: "Thooyamalli Flakes",
-    image: "/images/flakes/thooyamalli-flakes.png",
+    image: "/images/flakes/thooyamalli-rice-flakes.png",
     description: "Fragrant thooyamalli rice flakes with soft texture and gentle aroma.",
     features: ["Fragrant", "Soft texture", "Traditional rice flakes"],
     nutrition: { Notes: "Made from thooyamalli traditional rice" },
@@ -342,7 +342,7 @@ export const products = [
     id: 46,
     category: "Flakes",
     title: "Karunkuravai Flakes",
-    image: "/images/flakes/karunkuravai-rice-flakes.png",
+    image: "/images/flakes/karunkuravai-flakes.png",
     description: "Iron-rich karunkuravai traditional rice flakes for hearty meals.",
     features: ["Iron support", "Traditional variety", "Wholesome flakes"],
     nutrition: { Notes: "Made from karunkuravai traditional black rice" },
@@ -372,7 +372,7 @@ export const products = [
     id: 28,
     category: "Pulses",
     title: "White Urad Dal (Ullundu)",
-    image: "/images/pulses.png",
+    image: "/images/whiteurddal.webp",
     description:
       "Strengthens hips and back; improves digestion.",
     features: ["Bone & joint support", "Digestive aid", "Protein dense"],
@@ -382,7 +382,7 @@ export const products = [
     id: 29,
     category: "Pulses",
     title: "Black Urad Dal (Whole)",
-    image: "/images/pulses.png",
+    image: "/images/blackurddal.webp",
     description:
       "Whole black urad with skin for superior fibre and vitality.",
     features: ["High fibre", "Boosts vitality", "Iron rich"],
@@ -394,7 +394,7 @@ export const products = [
     id: 30,
     category: "Fresh Produce",
     title: "Red Onion",
-    image: "/images/cereals.png",
+    image: "/images/red-onion.jpg",
     description:
       "Rich in quercetin and anthocyanins; strong immunity support.",
     features: ["High antioxidants", "Vitamin C rich", "Bold flavor"],
@@ -404,7 +404,7 @@ export const products = [
     id: 31,
     category: "Fresh Produce",
     title: "Pink Onion (Rose Onion)",
-    image: "/images/cereals.png",
+    image: "/images/pink-onion.jpg",
     description:
       "Sweeter onion with cooling effect and higher natural sugars.",
     features: ["Cooling", "Sweeter profile", "Hydrating"],
@@ -456,21 +456,12 @@ export const products = [
     id: 36,
     category: "Gourmet",
     title: "Dry Fruits Assortment",
-    image: "/images/cereals.png",
+    image: "/images/dry-fruits-assortment.jpg",
     description:
       "Premium mix for instant energy and bone health.",
     features: ["Instant energy", "Bone health", "Rich micronutrients"],
     nutrition: { Notes: "Assorted nuts & fruits" },
   },
-  {
-    id: 37,
-    category: "Gourmet",
-    title: "Nuts Assortment",
-    image: "/images/cereals.png",
-    description:
-      "Heart-healthy mix with Omega-3 rich nuts.",
-    features: ["Omega-3 fats", "Heart healthy", "Great snacks"],
-    nutrition: { Notes: "Assorted nut mix" },
-  },
+  
 ];
 

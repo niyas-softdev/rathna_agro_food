@@ -2,6 +2,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import AOSProvider from "./providers/AOSProvider";
+import FloatingContact from "./components/FloatingContact";
 
 export const metadata = {
   title: "Rathna Agro Foods",
@@ -25,6 +26,8 @@ export default function RootLayout({ children }) {
           <Footer />
         </div>
         </AOSProvider>
+        <FloatingContact />
+
       </body>
     </html>
   );
