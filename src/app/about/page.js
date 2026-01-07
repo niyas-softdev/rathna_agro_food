@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 export default function AboutHighlights() {
   const [play, setPlay] = useState(false);
@@ -46,7 +47,8 @@ export default function AboutHighlights() {
       desc: "Natural spices cleaned and packed to retain aroma and freshness.",
     },
   ];
-  const videoUrl = "https://www.youtube.com/embed/ylmDeAxWi_w?rel=0&autoplay=1";  const videos = [
+  const videoUrl = "https://www.youtube.com/embed/ylmDeAxWi_w?rel=0&autoplay=1";
+  const videos = [
     "https://www.youtube.com/embed/qlv0FVnpICw",
     "https://www.youtube.com/embed/qlv0FVnpICw",
     "https://www.youtube.com/embed/qlv0FVnpICw",
@@ -85,31 +87,31 @@ export default function AboutHighlights() {
               </p>
             </div>
 
-            <a
+            <Link
               href="/about"
               className="inline-flex items-center text-sm font-semibold text-orange-600 hover:text-orange-700 transition"
             >
               Read More →
-            </a>
+            </Link>
           </div>
 
           {/* RIGHT VIDEO */}
           <div className="flex justify-center lg:justify-center">
-      <div
-        className="relative 
+            <div
+              className="relative 
           w-[260px] h-[460px] 
           lg:w-[300px] lg:h-[530px]
           rounded-2xl overflow-hidden border border-slate-200 shadow-xl bg-black"
-      >
-        <iframe
-          src={videoUrl}
-          className="w-full h-full"
-          allow="autoplay; encrypted-media"
-          allowFullScreen
-          title="Rathna Agro Foods Short"
-        />
-      </div>
-    </div>
+            >
+              <iframe
+                src={videoUrl}
+                className="w-full h-full"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+                title="Rathna Agro Foods Short"
+              />
+            </div>
+          </div>
 
         </div>
       </section>
@@ -173,12 +175,12 @@ export default function AboutHighlights() {
           </div>
 
           <div className="text-center pt-4">
-            <a
+            <Link
               href="/blog"
               className="inline-flex rounded-lg bg-orange-600 px-6 py-3 text-sm font-semibold text-white hover:bg-orange-700 transition"
             >
               Read Our Blogs →
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -211,24 +213,24 @@ export default function AboutHighlights() {
           </div>
         </div>
 
-              {/* 🌍 International Clients Section */}
-<div
-  className="mt-14 text-center space-y-6"
-  data-aos="fade-up"
-  data-aos-delay="200"
->
-  <h3 className="text-2xl sm:text-2xl font-semibold text-slate-800">
-    International Client's
-  </h3>
+        {/* 🌍 International Clients Section */}
+        <div
+          className="mt-14 text-center space-y-6"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <h3 className="text-2xl sm:text-2xl font-semibold text-slate-800">
+            International Client's
+          </h3>
 
-  <div className="flex justify-center">
-    <img
-      src="/images/international-flag.png" // ← YOUR SINGLE IMAGE HERE
-      alt="International Clients"
-      className="w-full max-w-5xl h-auto object-contain drop-shadow-lg"
-    />
-  </div>
-</div>
+          <div className="flex justify-center">
+            <img
+              src="/images/international-flag.png" // ← YOUR SINGLE IMAGE HERE
+              alt="International Clients"
+              className="w-full max-w-5xl h-auto object-contain drop-shadow-lg"
+            />
+          </div>
+        </div>
 
       </section>
     </>

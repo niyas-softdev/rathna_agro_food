@@ -31,7 +31,7 @@ export default function Navbar() {
     <header className="fixed top-0 left-0 w-full z-50">
       {/* ================= MAIN NAVBAR ================= */}
       <div className="bg-white/95 backdrop-blur-md border-b border-orange-200 shadow-sm relative z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[104px] flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-[104px] flex items-center justify-between">
 
           {/* LOGO */}
           <Link href="/" className="flex items-center">
@@ -59,22 +59,27 @@ export default function Navbar() {
                 </Link>
               ) : (
                 <div key={link.href} className="relative group">
-                  <button className="flex items-center gap-1 text-slate-700 hover:text-orange-600">
-                    Products <ChevronDown size={16} />
-                  </button>
+                  <Link
+                    href="/products"
+                    className="flex items-center gap-1 text-slate-700 hover:text-orange-600 py-4"
+                  >
+                    Products <ChevronDown size={16} className="group-hover:rotate-180 transition-transform duration-300" />
+                  </Link>
 
                   {/* DROPDOWN */}
-                  <div className="absolute left-0 top-full mt-3 w-56 bg-white rounded-xl shadow-lg border border-orange-100
-                  z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                    {productCategories.map((cat) => (
-                      <Link
-                        key={cat.label}
-                        href={`/products?cat=${encodeURIComponent(cat.query)}`}
-                        className="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:text-orange-600"
-                      >
-                        {cat.label}
-                      </Link>
-                    ))}
+                  <div className="absolute left-0 top-full mt-0 w-56 bg-white rounded-xl shadow-lg border border-orange-100
+                  z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left">
+                    <div className="py-2">
+                      {productCategories.map((cat) => (
+                        <Link
+                          key={cat.label}
+                          href={`/products?cat=${encodeURIComponent(cat.query)}`}
+                          className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-orange-50 hover:text-orange-600 transition-colors"
+                        >
+                          {cat.label}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 </div>
               )
@@ -93,8 +98,9 @@ export default function Navbar() {
 
           {/* MOBILE MENU BUTTON */}
           <button
-            className="md:hidden text-orange-600"
+            className="md:hidden text-orange-600 p-2 -mr-2"
             onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
           >
             {menuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
@@ -103,48 +109,59 @@ export default function Navbar() {
 
       {/* ================= MOBILE MENU ================= */}
       <div
-        className={`md:hidden bg-white border-t border-orange-100 shadow-lg transition-all duration-300 ${
-          menuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 overflow-hidden"
-        }`}
+        className={`md:hidden bg-white border-t border-orange-100 shadow-lg transition-all duration-300 absolute w-full left-0 top-16 z-40 ${menuOpen ? "max-h-[85vh] opacity-100 overflow-y-auto" : "max-h-0 opacity-0 overflow-hidden"
+          }`}
       >
-        <nav className="flex flex-col px-4 py-4 space-y-4 text-sm font-medium">
+        <nav className="flex flex-col px-4 py-6 space-y-4 text-base font-medium">
           {navLinks.map((link) =>
             link.label !== "Products" ? (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="text-slate-700"
+                className="text-slate-700 py-2 border-b border-gray-50"
               >
                 {link.label}
               </Link>
             ) : (
-              <div key={link.href}>
-                <button
-                  onClick={() => setProductsOpen(!productsOpen)}
-                  className="flex items-center justify-between w-full text-slate-700"
-                >
-                  Products
-                  <ChevronDown
-                    size={16}
-                    className={`transition-transform ${productsOpen ? "rotate-180" : ""}`}
-                  />
-                </button>
+              <div key={link.href} className="border-b border-gray-50 pb-2">
+                <div className="flex items-center justify-between w-full">
+                  <Link
+                    href="/products"
+                    onClick={() => setMenuOpen(false)}
+                    className="text-slate-700 py-2 flex-1"
+                  >
+                    Products
+                  </Link>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setProductsOpen(!productsOpen);
+                    }}
+                    className="p-3 text-slate-500 hover:text-orange-600"
+                    aria-label="Toggle products dropdown"
+                  >
+                    <ChevronDown
+                      size={20}
+                      className={`transition-transform duration-300 ${productsOpen ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                </div>
 
-                {productsOpen && (
-                  <div className="mt-2 ml-3 space-y-2">
+                <div className={`overflow-hidden transition-all duration-300 ${productsOpen ? "max-h-96 opacity-100 mt-2" : "max-h-0 opacity-0"}`}>
+                  <div className="flex flex-col space-y-1 pl-4 border-l-2 border-orange-100 ml-1">
                     {productCategories.map((cat) => (
                       <Link
                         key={cat.label}
                         href={`/products?cat=${encodeURIComponent(cat.query)}`}
                         onClick={() => setMenuOpen(false)}
-                        className="block text-slate-600"
+                        className="block py-2 text-sm text-slate-600 hover:text-orange-600"
                       >
                         {cat.label}
                       </Link>
                     ))}
                   </div>
-                )}
+                </div>
               </div>
             )
           )}
@@ -158,36 +175,41 @@ export default function Navbar() {
         </nav>
       </div>
 
-      {/* ================= TOP MARQUEE BAR ================= */}
-      <div className="hidden sm:block bg-[#dff3b3] overflow-hidden py-2 pointer-events-none relative z-10">
-        <div className="relative w-full overflow-hidden">
-          <div className="flex w-max animate-marquee gap-10 text-sm font-medium text-slate-800">
+      {/* ✅ MARQUEE – NOW WORKS ON MOBILE + DESKTOP */}
+      <div className="bg-[#dff3b3] overflow-hidden py-2 relative z-40">
+        <div className="w-full overflow-hidden">
+          <div className="flex w-max animate-marquee gap-8 text-xs sm:text-sm font-medium text-slate-800">
 
-            <div className="flex items-center gap-10 whitespace-nowrap">
-              <span className="text-red-500 text-lg font-bold">««</span>
+            <div className="flex items-center gap-8 whitespace-nowrap">
+              <span className="text-red-500 font-bold">««</span>
               <span>Trusted by 1,70,000+ Happy Customers</span>
-
-              <span className="text-red-500 text-lg font-bold">««</span>
+              <span className="text-red-500 font-bold">««</span>
               <span>100% Natural food products company</span>
-
-              <span className="text-red-500 text-lg font-bold">««</span>
+              <span className="text-red-500 font-bold">««</span>
               <span>No added preservatives & chemicals</span>
             </div>
 
-            <div className="flex items-center gap-10 whitespace-nowrap">
-              <span className="text-red-500 text-lg font-bold">««</span>
+            <div className="flex items-center gap-8 whitespace-nowrap">
+              <span className="text-red-500 font-bold">««</span>
               <span>Trusted by 1,70,000+ Happy Customers</span>
-
-              <span className="text-red-500 text-lg font-bold">««</span>
+              <span className="text-red-500 font-bold">««</span>
               <span>100% Natural food products company</span>
+              <span className="text-red-500 font-bold">««</span>
+              <span>No added preservatives & chemicals</span>
+            </div>
 
-              <span className="text-red-500 text-lg font-bold">««</span>
+            <div className="flex items-center gap-8 whitespace-nowrap">
+              <span className="text-red-500 font-bold">««</span>
+              <span>Trusted by 1,70,000+ Happy Customers</span>
+              <span className="text-red-500 font-bold">««</span>
+              <span>100% Natural food products company</span>
+              <span className="text-red-500 font-bold">««</span>
               <span>No added preservatives & chemicals</span>
             </div>
 
           </div>
         </div>
       </div>
-    </header>
+    </header >
   );
 }
