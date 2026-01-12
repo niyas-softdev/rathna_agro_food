@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { HiMiniXMark } from "react-icons/hi2";
 import { products as productCatalog } from "../../data/products";
 
@@ -27,8 +27,8 @@ function ProductCard({ product, onSelect }) {
   const highlights = product.features?.length
     ? product.features.slice(0, 2)
     : Object.entries(product.nutrition || {})
-        .slice(0, 2)
-        .map(([key, value]) => `${key}: ${value}`);
+      .slice(0, 2)
+      .map(([key, value]) => `${key}: ${value}`);
 
   const hasPrice = typeof product.price === "number";
   const priceLabel = hasPrice ? `₹${product.price.toLocaleString("en-IN")}` : "Contact for price";
@@ -120,7 +120,7 @@ function DetailRow({ label, value }) {
 
 function ProductDetailSheet({ product, onClose }) {
   const [imgError, setImgError] = useState(false);
-  
+
   if (!product) return null;
 
   const nutritionEntries = Object.entries(product.nutrition || {});
@@ -253,10 +253,10 @@ function ProductDetailSheet({ product, onClose }) {
 }
 
 export default function Products({ limit }) {
+  const router = useRouter();
   const searchParams = useSearchParams();
-  const initialCategory = searchParams.get("cat") || "All";
+  const activeCategory = limit ? "All" : (searchParams.get("cat") || "All");
 
-  const [activeCategory, setActiveCategory] = useState(initialCategory);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const list = useMemo(() => {
@@ -269,6 +269,14 @@ export default function Products({ limit }) {
     if (typeof limit === "number") return [];
     return ["All", ...new Set(productCatalog.map((item) => item.category))];
   }, [limit]);
+
+  const handleCategoryChange = (cat) => {
+    if (cat === "All") {
+      router.push("/products", { scroll: false });
+    } else {
+      router.push(`/products?cat=${encodeURIComponent(cat)}`, { scroll: false });
+    }
+  };
 
   return (
     <section id="products" className="px-4 sm:px-6 lg:px-8">
@@ -292,12 +300,11 @@ export default function Products({ limit }) {
               <button
                 key={cat}
                 type="button"
-                onClick={() => setActiveCategory(cat)}
-                className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-all ${
-                  activeCategory === cat
+                onClick={() => handleCategoryChange(cat)}
+                className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-all ${activeCategory === cat
                     ? "bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-lg shadow-orange-300/50"
                     : "glass-gold text-orange-600"
-                }`}
+                  }`}
               >
                 {cat}
               </button>
