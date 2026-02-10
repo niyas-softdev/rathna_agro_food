@@ -7,12 +7,13 @@ import Stats from "./components/Stats";
 import Partners from "./components/Partners";
 import Testimonials from "./components/Testimonials";
 import ContactForm from "./components/ContactForm";
+import Certifications from "./components/Certifications";
 
 export default function Home() {
   return (
     <div className="space-y-20 lg:space-y-24">
       <Hero />
-
+      <Certifications />
       <Features />
       <AboutIntro />
       <Stats />
