@@ -24,10 +24,16 @@ export default function FloatingContact() {
 
       {/* Phone */}
       <a
-        href={`tel:${phone}`}
-        aria-label="Call now"
-        className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg hover:bg-blue-700 transition-colors"
-      >
+  href={`tel:${phone}`}
+  aria-label="Call now"
+  onClick={() => {
+    if (window.gtag_report_conversion) {
+      window.gtag_report_conversion(`tel:${phone}`);
+    }
+  }}
+  className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-blue-600 text-white flex items-center justify-center"
+>
+
         <span className="absolute inset-0 rounded-full bg-blue-400 opacity-60 animate-ping"></span>
         <PhoneIcon className="relative w-7 h-7 sm:w-8 sm:h-8" />
       </a>
