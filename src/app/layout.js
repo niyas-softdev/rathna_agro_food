@@ -5,7 +5,6 @@ import AOSProvider from "./providers/AOSProvider";
 import FloatingContact from "./components/FloatingContact";
 import Script from "next/script";
 
-
 export const metadata = {
   title: "Rathna Agro Foods",
   description:
@@ -16,44 +15,40 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
-        className=" text-slate-800 antialiased overflow-x-hidden"
+        className="text-slate-800 antialiased overflow-x-hidden"
         suppressHydrationWarning
       >
-
+        {/* ✅ Google Ads Global Tag */}
         <Script
-  src="https://www.googletagmanager.com/gtag/js?id=AW-17689816389"
-  strategy="afterInteractive"
-/>
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17689816389"
+          strategy="afterInteractive"
+        />
 
-<Script id="google-ads-conversion" strategy="afterInteractive">
-  {`
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'AW-17689816389');
-  `}
-</Script>
+        <Script id="google-ads-base" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag('js', new Date());
+            gtag('config', 'AW-17689816389');
+          `}
+        </Script>
 
-<Script id="call-conversion-event" strategy="afterInteractive">
-{`
-  function gtag_report_conversion(url) {
-    var callback = function () {
-      if (typeof(url) != 'undefined') {
-        window.location = url;
-      }
-    };
-    gtag('event', 'conversion', {
-        'send_to': 'AW-17689816389/YiqmCMu3yPkbEMXalPNB',
-        'value': 1.0,
-        'currency': 'INR',
-        'event_callback': callback
-    });
-    return false;
-  }
-  window.gtag_report_conversion = gtag_report_conversion;
-`}
-</Script>
-
+        {/* ✅ Clean Conversion Function (NO redirect callback) */}
+        <Script id="google-call-conversion" strategy="afterInteractive">
+          {`
+            function gtag_report_conversion() {
+              if (typeof gtag !== 'undefined') {
+                gtag('event', 'conversion', {
+                  'send_to': 'AW-17689816389/YiqmCMu3yPkbEMXalPNB',
+                  'value': 1.0,
+                  'currency': 'INR'
+                });
+              }
+            }
+            window.gtag_report_conversion = gtag_report_conversion;
+          `}
+        </Script>
 
         <AOSProvider>
           <div className="flex flex-col min-h-screen">
@@ -64,8 +59,8 @@ export default function RootLayout({ children }) {
             <Footer />
           </div>
         </AOSProvider>
-        <FloatingContact />
 
+        <FloatingContact />
       </body>
     </html>
   );

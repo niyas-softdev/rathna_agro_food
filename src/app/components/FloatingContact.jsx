@@ -7,6 +7,22 @@ export default function FloatingContact() {
     "Hello Rathna Agro Foods, I would like to know more details."
   )}`;
 
+  const handleCallClick = () => {
+    if (typeof window !== "undefined" && window.gtag_report_conversion) {
+      window.gtag_report_conversion();
+    }
+  };
+
+  const handleWhatsappClick = () => {
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag("event", "conversion", {
+        send_to: "AW-17689816389/YiqmCMu3yPkbEMXalPNB",
+        value: 1.0,
+        currency: "INR",
+      });
+    }
+  };
+
   return (
     <div className="fixed z-50 bottom-6 right-4 sm:bottom-8 sm:right-6 flex flex-col items-center gap-3 select-none print:hidden">
       
@@ -16,6 +32,7 @@ export default function FloatingContact() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
+        onClick={handleWhatsappClick}
         className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-green-500 text-white flex items-center justify-center shadow-lg hover:bg-green-600 transition-colors"
       >
         <span className="absolute inset-0 rounded-full bg-green-400 opacity-60 animate-ping"></span>
@@ -24,16 +41,11 @@ export default function FloatingContact() {
 
       {/* Phone */}
       <a
-  href={`tel:${phone}`}
-  aria-label="Call now"
-  onClick={() => {
-    if (window.gtag_report_conversion) {
-      window.gtag_report_conversion(`tel:${phone}`);
-    }
-  }}
-  className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-blue-600 text-white flex items-center justify-center"
->
-
+        href={`tel:${phone}`}
+        aria-label="Call now"
+        onClick={handleCallClick}
+        className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg hover:bg-blue-700 transition-colors"
+      >
         <span className="absolute inset-0 rounded-full bg-blue-400 opacity-60 animate-ping"></span>
         <PhoneIcon className="relative w-7 h-7 sm:w-8 sm:h-8" />
       </a>
