@@ -7,6 +7,7 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/products", label: "Products" },
+  { href: "/certificates", label: "Certificates" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -36,19 +37,16 @@ export default function MobileMenu() {
       >
         <div className="w-5 h-5 flex flex-col justify-center gap-1.5">
           <span
-            className={`block h-0.5 w-full bg-[#fbbf24] rounded-full transition-all duration-300 ${
-              isOpen ? "rotate-45 translate-y-2" : ""
-            }`}
+            className={`block h-0.5 w-full bg-[#fbbf24] rounded-full transition-all duration-300 ${isOpen ? "rotate-45 translate-y-2" : ""
+              }`}
           />
           <span
-            className={`block h-0.5 w-full bg-[#fbbf24] rounded-full transition-all duration-300 ${
-              isOpen ? "opacity-0" : ""
-            }`}
+            className={`block h-0.5 w-full bg-[#fbbf24] rounded-full transition-all duration-300 ${isOpen ? "opacity-0" : ""
+              }`}
           />
           <span
-            className={`block h-0.5 w-full bg-[#fbbf24] rounded-full transition-all duration-300 ${
-              isOpen ? "-rotate-45 -translate-y-2" : ""
-            }`}
+            className={`block h-0.5 w-full bg-[#fbbf24] rounded-full transition-all duration-300 ${isOpen ? "-rotate-45 -translate-y-2" : ""
+              }`}
           />
         </div>
       </button>
