@@ -1,8 +1,5 @@
-import nodemailer from "nodemailer";
+export const runtime = "edge";
 
-export const runtime = "nodejs";
-
-/* ✅ ADD THIS — Cloudflare CORS Preflight Fix */
 export async function OPTIONS() {
     return new Response(null, {
         status: 200,
@@ -21,44 +18,47 @@ export async function POST(request) {
 
         // 1. Honeypot Spam Protection
         if (honeypot) {
-            return Response.json({ success: true });
+            return new Response(JSON.stringify({ success: true }), {
+                status: 200,
+                headers: { "Content-Type": "application/json" }
+            });
         }
 
         // 2. Validation
         if (!name || name.trim().length < 3) {
-            return Response.json(
-                { success: false, error: "Name must be at least 3 characters long." },
-                { status: 400 }
+            return new Response(
+                JSON.stringify({ success: false, error: "Name must be at least 3 characters long." }),
+                { status: 400, headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } }
             );
         }
 
         const nameRegex = /^[A-Za-z\s]+$/;
         if (!nameRegex.test(name)) {
-            return Response.json(
-                { success: false, error: "Name can only contain alphabets and spaces." },
-                { status: 400 }
+            return new Response(
+                JSON.stringify({ success: false, error: "Name can only contain alphabets and spaces." }),
+                { status: 400, headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } }
             );
         }
 
         if (!phone || phone.replace(/\D/g, "").length < 8) {
-            return Response.json(
-                { success: false, error: "Phone number must contain at least 8 digits." },
-                { status: 400 }
+            return new Response(
+                JSON.stringify({ success: false, error: "Phone number must contain at least 8 digits." }),
+                { status: 400, headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } }
             );
         }
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!email || !emailRegex.test(email)) {
-            return Response.json(
-                { success: false, error: "Invalid email address format." },
-                { status: 400 }
+            return new Response(
+                JSON.stringify({ success: false, error: "Invalid email address format." }),
+                { status: 400, headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } }
             );
         }
 
         if (!message || message.trim().length < 10) {
-            return Response.json(
-                { success: false, error: "Message must be at least 10 characters long." },
-                { status: 400 }
+            return new Response(
+                JSON.stringify({ success: false, error: "Message must be at least 10 characters long." }),
+                { status: 400, headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } }
             );
         }
 
@@ -67,39 +67,21 @@ export async function POST(request) {
             request.headers.get("x-real-ip") ||
             "Unknown IP";
 
-        // 3. Nodemailer Setup
-        const transporter = nodemailer.createTransport({
-            host: process.env.SMTP_HOST,
-            port: Number(process.env.SMTP_PORT),
-            secure: false,
-            auth: {
-                user: process.env.SMTP_USER,
-                pass: process.env.SMTP_PASS,
-            },
-            tls: {
-                rejectUnauthorized: false,
-            },
-        });
+        // 3. Resend Setup
+        const resendApiKey = process.env.RESEND_API_KEY;
+        if (!resendApiKey) {
+            throw new Error("Missing RESEND_API_KEY");
+        }
 
-        const receivingEmail =
-            process.env.RECEIVING_EMAIL || "info@rathnaagrofoods.com";
+        const senderEmail = "info@rathnaagrofoods.com";
+        const receivingEmail = process.env.RECEIVING_EMAIL || "info@rathnaagrofoods.com";
 
         // 4. Admin Mail
-        const adminMailOptions = {
-            from: process.env.SMTP_USER,
-            replyTo: email,
+        const adminEmailData = {
+            from: senderEmail,
             to: receivingEmail,
-            subject: `New Business Enquiry – Rathna Agro Foods`,
-            text: `Name: ${name}
-Phone: ${phone}
-Email: ${email}
-Company: ${company || "Not provided"}
-Message: ${message}
-
-Submitted Date: ${new Date().toLocaleString("en-IN", {
-                timeZone: "Asia/Kolkata",
-            })}
-IP Address: ${ip}`,
+            reply_to: email,
+            subject: "New Business Enquiry – Rathna Agro Foods",
             html: `
         <div style="font-family: Arial; line-height:1.6;">
           <h2 style="color:#ea580c;">New Business Enquiry – Rathna Agro Foods</h2>
@@ -119,11 +101,25 @@ IP Address: ${ip}`,
       `,
         };
 
+        const adminRes = await fetch("https://api.resend.com/emails", {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${resendApiKey}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(adminEmailData),
+        });
+
+        if (!adminRes.ok) {
+            const errorText = await adminRes.text();
+            throw new Error(`Admin Mail Error: ${errorText}`);
+        }
+
         // 5. Customer Mail
-        const customerMailOptions = {
-            from: process.env.SMTP_USER,
+        const customerEmailData = {
+            from: senderEmail,
             to: email,
-            subject: `Thank you for contacting Rathna Agro Foods`,
+            subject: "Thank you for contacting Rathna Agro Foods",
             html: `
         <div style="font-family: Arial;">
           <p>Dear <strong>${name}</strong>,</p>
@@ -136,8 +132,19 @@ IP Address: ${ip}`,
       `,
         };
 
-        await transporter.sendMail(adminMailOptions);
-        await transporter.sendMail(customerMailOptions);
+        const customerRes = await fetch("https://api.resend.com/emails", {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${resendApiKey}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(customerEmailData),
+        });
+
+        if (!customerRes.ok) {
+            const errorText = await customerRes.text();
+            console.error(`Customer Mail Error: ${errorText}`);
+        }
 
         return new Response(
             JSON.stringify({ success: true, message: "Enquiry submitted successfully." }),
