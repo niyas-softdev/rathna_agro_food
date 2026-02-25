@@ -1,41 +1,42 @@
-import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
-export async function POST(req) {
+export const runtime = "nodejs";
+
+export async function POST(request) {
     try {
-        const body = await req.json();
+        const body = await request.json();
         const { name, phone, email, company, message, honeypot } = body;
 
         // 1. Basic Spam Protection (Honeypot)
         if (honeypot) {
             // If honeypot is filled, it's likely a bot. Return 200 to trick the bot.
-            return NextResponse.json({ success: true });
+            return Response.json({ success: true });
         }
 
         // 2. Server-Side Validation
         if (!name || name.trim().length < 3) {
-            return NextResponse.json({ success: false, error: "Name must be at least 3 characters long." }, { status: 400 });
+            return Response.json({ success: false, error: "Name must be at least 3 characters long." }, { status: 400 });
         }
         const nameRegex = /^[A-Za-z\s]+$/;
         if (!nameRegex.test(name)) {
-            return NextResponse.json({ success: false, error: "Name can only contain alphabets and spaces." }, { status: 400 });
+            return Response.json({ success: false, error: "Name can only contain alphabets and spaces." }, { status: 400 });
         }
 
         if (!phone || phone.replace(/\D/g, "").length < 8) {
-            return NextResponse.json({ success: false, error: "Phone number must contain at least 8 digits." }, { status: 400 });
+            return Response.json({ success: false, error: "Phone number must contain at least 8 digits." }, { status: 400 });
         }
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!email || !emailRegex.test(email)) {
-            return NextResponse.json({ success: false, error: "Invalid email address format." }, { status: 400 });
+            return Response.json({ success: false, error: "Invalid email address format." }, { status: 400 });
         }
 
         if (!message || message.trim().length < 10) {
-            return NextResponse.json({ success: false, error: "Message must be at least 10 characters long." }, { status: 400 });
+            return Response.json({ success: false, error: "Message must be at least 10 characters long." }, { status: 400 });
         }
 
         // Capture IP Address (Best-effort in Next.js)
-        const ip = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "Unknown IP";
+        const ip = request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip") || "Unknown IP";
 
         // 3. Nodemailer Configuration Loader
         const transporter = nodemailer.createTransport({
@@ -117,11 +118,11 @@ www.rathnaagrofoods.com`,
         await transporter.sendMail(adminMailOptions);
         await transporter.sendMail(customerMailOptions);
 
-        return NextResponse.json({ success: true, message: "Enquiry submitted successfully." });
+        return Response.json({ success: true, message: "Enquiry submitted successfully." });
 
     } catch (error) {
         console.error("Contact Form Error:", error);
-        return NextResponse.json(
+        return Response.json(
             { success: false, error: "Failed to send the enquiry. Please try again later." },
             { status: 500 }
         );
