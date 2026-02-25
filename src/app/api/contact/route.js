@@ -87,7 +87,7 @@ IP Address: ${ip}`,
       `,
         };
 
-        // 5. Send Auto-Reply to Customer
+        
         const customerMailOptions = {
             from: process.env.SMTP_USER,
             to: email,
