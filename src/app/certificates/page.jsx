@@ -12,7 +12,7 @@ const certificates = [
     {
         id: "fssai",
         title: "FSSAI License",
-        idNumber: "Reg. No. 12420000000000", /* Mock registration number, update if required */
+        idNumber: "Reg. No. 12424999000775",
         description: "Our Food Safety and Standards Authority of India registration, ensuring all our agro-products strictly adhere to national safety and hygiene regulations.",
         pdfSrc: "/FSSAI.pdf",
         tag: "Safety & Hygiene",
@@ -48,6 +48,16 @@ const certificates = [
         tag: "International Trade",
         color: "bg-purple-50 text-purple-700 border-purple-200",
         logoUrl: "/apeda.png",
+    },
+    {
+        id: " Importer-Exporter Code",
+        title: "IEC Registration",
+        idNumber: "ADIPN1730B",
+        description: "To import or export in India, IEC Code is mandatory. No person or entity shall make any Import or Export without IEC Code Number, unless specifically exempted.",
+        pdfSrc: "/IEC.pdf",
+        tag: "International Trade",
+        color: "bg-purple-50 text-purple-700 border-purple-200",
+        logoUrl: "/ice1.png",
     },
 ];
 

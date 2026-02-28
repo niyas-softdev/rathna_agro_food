@@ -14,12 +14,13 @@ export default function Home() {
     <div className="space-y-20 lg:space-y-24">
       <Hero />
       <Certifications />
-      <Features />
-      <AboutIntro />
-      <Stats />
       <Suspense fallback={<div className="px-4 sm:px-6 lg:px-8 py-12 text-center text-slate-600">Loading products...</div>}>
         <Products limit={3} />
       </Suspense>
+      <Features />
+      <AboutIntro />
+      <Stats />
+
       <Testimonials />
       <ContactForm />
     </div>
